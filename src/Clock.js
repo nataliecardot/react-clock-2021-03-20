@@ -1,11 +1,20 @@
 import React from 'react';
 
-const Clock = () => {
+const Clock = ({ hourRatio, minuteRatio, secondRatio }) => {
   return (
     <div className="clock">
-      <div className="hand hour"></div>
-      <div className="hand minute"></div>
-      <div className="hand second"></div>
+      <div
+        className="hand hour"
+        style={{ transform: `translate(-50%) rotate(${hourRatio * 360}deg)` }}
+      ></div>
+      <div
+        className="hand minute"
+        style={{ transform: `translate(-50%) rotate(${minuteRatio * 360}deg)` }}
+      ></div>
+      <div
+        className="hand second"
+        style={{ transform: `translate(-50%) rotate(${secondRatio * 360}deg)` }}
+      ></div>
 
       {/* To create this used Emmet .number.number$*12>div{$} */}
       <div className="number number1">
