@@ -4,9 +4,9 @@ import Clock from './Clock';
 
 class App extends Component {
   state = {
-    secondRatio: 0,
-    minuteRatio: 0,
-    hourRatio: 0,
+    secondsDecimal: 0,
+    minutesDecimal: 0,
+    hourDecimal: 0,
   };
 
   componentDidMount() {
@@ -19,23 +19,25 @@ class App extends Component {
 
   setClock = () => {
     const currentDate = new Date();
-    let secondRatio = currentDate.getSeconds() / 60;
-    let minuteRatio = (secondRatio + currentDate.getMinutes()) / 60;
-    let hourRatio = (minuteRatio + currentDate.getHours()) / 12;
 
-    this.setState({ secondRatio: secondRatio });
-    this.setState({ minuteRatio });
-    this.setState({ hourRatio });
+    // These are multiplied by 360 in Clock component to get degrees for CSS rotate(#deg)
+    let secondsDecimal = currentDate.getSeconds() / 60;
+    let minutesDecimal = (secondsDecimal + currentDate.getMinutes()) / 60;
+    let hourDecimal = (minutesDecimal + currentDate.getHours()) / 12;
+
+    this.setState({ secondsDecimal: secondsDecimal });
+    this.setState({ minutesDecimal });
+    this.setState({ hourDecimal });
   };
 
   render() {
-    const { secondRatio, minuteRatio, hourRatio } = this.state;
+    const { secondsDecimal, minutesDecimal, hourDecimal } = this.state;
 
     return (
       <Clock
-        secondRatio={secondRatio}
-        minuteRatio={minuteRatio}
-        hourRatio={hourRatio}
+        secondsDecimal={secondsDecimal}
+        minutesDecimal={minutesDecimal}
+        hourDecimal={hourDecimal}
       />
     );
   }
